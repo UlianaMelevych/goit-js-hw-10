@@ -2,17 +2,17 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#promise-form");
+  const form = document.querySelector(".form");
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    
-    const delay = parseInt(document.querySelector("#delay").value, 10);
-    const shouldResolve = document.querySelector("input[name='state']:checked").value === "fulfilled";
+
+    const delay = Number(form.elements.delay.value);
+    const state = form.elements.state.value;
 
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (shouldResolve) {
+        if (state === "fulfilled") {
           resolve(delay);
         } else {
           reject(delay);
